@@ -172,6 +172,50 @@ class _ProblemsState extends State<Problems> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Problems'),
+        actions: [
+          if (!isBookmark)
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20.0),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton(
+                  dropdownColor: isDarkMode ? Color(0xFF121212) : Colors.white,
+                  icon: Icon(
+                    Icons.sort,
+                    color: Colors.white,
+                  ),
+                  items: difficulty.map(
+                    (val) {
+                      return DropdownMenuItem<String>(
+                        value: val,
+                        child: Text(
+                          val,
+                          style: TextStyle(
+                            color: isDarkMode
+                                ? (_dropDownValue == val
+                                    ? Colors.white
+                                    : Colors.white54)
+                                : (_dropDownValue == val
+                                    ? Theme.of(context).primaryColor
+                                    : Colors.black),
+                          ),
+                        ),
+                      );
+                    },
+                  ).toList(),
+                  onChanged: (val) {
+                    setState(
+                      () {
+                        _dropDownValue = val;
+                        _controller.clear();
+                        _searchProblems(_dropDownValue, false);
+                      },
+                    );
+//                  print("val : " + val);
+                  },
+                ),
+              ),
+            ),
+        ],
       ),
       drawer: MyDrawer(),
       body: Column(
@@ -312,6 +356,21 @@ class _ProblemsState extends State<Problems> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          isBookmark ? Icons.all_inclusive : Icons.star,
+          color: Colors.white,
+        ),
+        backgroundColor: Color(0xFF2867B2),
+        onPressed: () {
+          isBookmark = !isBookmark;
+          setState(() {
+            _dropDownValue = difficulty[0];
+            _controller.clear();
+            _data = _getAllProblems(false, false);
+          });
+        },
       ),
     );
   }

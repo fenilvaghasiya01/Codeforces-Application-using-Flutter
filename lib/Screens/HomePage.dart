@@ -1,3 +1,4 @@
+import 'package:bubbled_navigation_bar/bubbled_navigation_bar.dart';
 import 'package:codeforces/Common/solvedDetails.dart';
 import 'package:codeforces/Common/urls.dart';
 import 'package:codeforces/Screens/problems/Problems.dart';
@@ -83,174 +84,42 @@ class _HomePageState extends State<HomePage> {
             children: pages,
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          unselectedItemColor: Color(0xFF2867B2),
-          selectedItemColor: Colors.blue[900],
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              activeIcon: Container(
-                child: const Icon(Icons.person_outlined),
-                decoration: selectedTopBorder(),
-              ),
-              icon: const Icon(FontAwesomeIcons.user),
-              label: 'Profile',
+        bottomNavigationBar: BubbledNavigationBar(
+          defaultBubbleColor:Color(0xFF1c4a80),
+          // onTap: (index) {
+          //    index: _selectedIndex;
+          // },
+          onTap:_onTap,
+          items: <BubbledNavigationBarItem>[
+            BubbledNavigationBarItem(
+              icon:       Icon(FontAwesomeIcons.user, size: 30, color: Colors.red),
+              activeIcon: Icon(CupertinoIcons.profile_circled, size: 30, color: Colors.white),
+              title: Text('Profile', style: TextStyle(color: Colors.white, fontSize: 12),),
             ),
-            BottomNavigationBarItem(
-              activeIcon: Container(
-                child: const Icon(FontAwesomeIcons.caretSquareRight),
-                decoration: selectedTopBorder(),
-              ),
-              icon: const Icon(FontAwesomeIcons.caretSquareRight),
-              label: 'Upcoming',
+            BubbledNavigationBarItem(
+              icon:       Icon(FontAwesomeIcons.caretSquareRight, size: 30, color: Colors.purple),
+              activeIcon: Icon(FontAwesomeIcons.caretSquareRight, size: 30, color: Colors.white),
+              title: Text('Upcoming', style: TextStyle(color: Colors.white, fontSize: 12),),
             ),
-            BottomNavigationBarItem(
-              activeIcon: Container(
-                child: const  Icon(Icons.content_paste),
-                decoration: selectedTopBorder(),
-              ),
-              icon: const Icon(Icons.content_paste),
-              label: 'Upsolve',
+            BubbledNavigationBarItem(
+              icon:       Icon(Icons.content_paste, size: 30, color: Colors.purple),
+              activeIcon: Icon(Icons.content_paste, size: 30, color: Colors.white),
+              title: Text('Upsolve', style: TextStyle(color: Colors.white, fontSize: 12),),
             ),
-            BottomNavigationBarItem(
-              activeIcon: Container(
-                child: const  Icon(Icons.code),
-                decoration: selectedTopBorder(),
-              ),
-              icon: const  Icon(Icons.code),
-              label: 'Problems',
+            BubbledNavigationBarItem(
+              icon:       Icon(Icons.code, size: 30, color: Colors.teal),
+              activeIcon: Icon(Icons.code_sharp, size: 30, color: Colors.white),
+              title: Text('Problems', style: TextStyle(color: Colors.white, fontSize: 12),),
             ),
-            // BottomNavigationBarItem(
-            //   activeIcon: Container(
-            //     child: const  Icon(Icons.file_download),
-            //     decoration: selectedTopBorder(),
-            //   ),
-            //   icon: const   Icon(Icons.file_download),
-            //   label: 'Downloads',
-            // ),
+            BubbledNavigationBarItem(
+              icon:       Icon( Icons.file_download,size: 30, color: Colors.cyan),
+              activeIcon: Icon( Icons.file_download, size: 30, color: Colors.white),
+              title: Text('Downloads', style: TextStyle(color: Colors.white, fontSize: 12),),
+            ),
           ],
-          currentIndex: _selectedIndex,
-          onTap: _onTap,
+
+
         ),
-        // bottomNavigationBar:  BottomNavigationBar(
-        //   showSelectedLabels: false,
-        //   showUnselectedLabels: false,
-        //   unselectedItemColor: Colors.deepPurple[200],
-        //   selectedItemColor: Colors.deepPurple,
-        //   type: BottomNavigationBarType.fixed,
-        //   items: [
-        //     BottomNavigationBarItem(
-        //       activeIcon: Container(
-        //         width: 80.0,
-        //         height: 40.0,
-        //         decoration: BoxDecoration(
-        //             color: Colors.deepPurple[50],
-        //             borderRadius: BorderRadius.circular(10.0)),
-        //         child: Row(
-        //           mainAxisAlignment: MainAxisAlignment.center,
-        //           children: const [
-        //             Icon(CupertinoIcons.profile_circled),
-        //             Text(
-        //               'Profile',
-        //               style: TextStyle(color: Colors.deepPurple),
-        //             )
-        //           ],
-        //         ),
-        //       ),
-        //       icon: const Icon(FontAwesomeIcons.user),
-        //       label: 'Profile',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       activeIcon: Container(
-        //         width: 100.0,
-        //         height: 40.0,
-        //         decoration: BoxDecoration(
-        //             color: Colors.deepPurple[50],
-        //             borderRadius: BorderRadius.circular(10.0)),
-        //         child: Row(
-        //           mainAxisAlignment: MainAxisAlignment.center,
-        //           children: const [
-        //             Icon(FontAwesomeIcons.caretSquareRight),
-        //             Text(
-        //               'Upcoming',
-        //               style: TextStyle(color: Colors.deepPurple),
-        //             )
-        //           ],
-        //         ),
-        //       ),
-        //       icon: const Icon(FontAwesomeIcons.caretSquareRight),
-        //       label: 'Upcoming',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       activeIcon: Container(
-        //         width: 90.0,
-        //         height: 40.0,
-        //         decoration: BoxDecoration(
-        //             color: Colors.deepPurple[50],
-        //             borderRadius: BorderRadius.circular(10.0)),
-        //         child: Row(
-        //           mainAxisAlignment: MainAxisAlignment.center,
-        //           children: const [
-        //             Icon(Icons.content_paste),
-        //             Text(
-        //               'Upsolve',
-        //               style: TextStyle(color: Colors.deepPurple),
-        //             )
-        //           ],
-        //         ),
-        //       ),
-        //       icon: const Icon(Icons.content_paste),
-        //       label: 'Upsolve',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       activeIcon: Container(
-        //         width: 100.0,
-        //         height: 40.0,
-        //         decoration: BoxDecoration(
-        //             color: Colors.deepPurple[50],
-        //             borderRadius: BorderRadius.circular(10.0)),
-        //         child: Row(
-        //           mainAxisAlignment: MainAxisAlignment.center,
-        //           children: const [
-        //             Icon(Icons.code),
-        //             Text(
-        //               'Problems',
-        //               style: TextStyle(color: Colors.deepPurple),
-        //             ),
-        //           ],
-        //         ),
-        //       ),
-        //       icon: const Icon(Icons.code),
-        //       label: 'Problems',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       activeIcon: Container(
-        //         width: 130.0,
-        //         height: 40.0,
-        //         decoration: BoxDecoration(
-        //             color: Colors.deepPurple[50],
-        //             borderRadius: BorderRadius.circular(10.0)),
-        //         child: Row(
-        //           mainAxisAlignment: MainAxisAlignment.center,
-        //           children: const [
-        //             Icon(Icons.file_download),
-        //             Text(
-        //               'Downloads',
-        //               style: TextStyle(color: Colors.deepPurple),
-        //             )
-        //           ],
-        //         ),
-        //       ),
-        //       icon: const Icon(Icons.file_download),
-        //       label: 'Downloads',
-        //     )
-        //   ],
-        //   currentIndex: _selectedIndex,
-        //   // selectedItemColor:
-        //   //       isDarkMode ? Colors.white : Theme.of(context).primaryColor,
-        //   //   unselectedItemColor: Colors.grey,
-        //   onTap: _onTap,
-        // ),
         // bottomNavigationBar: BottomNavigationBar(
         //   elevation: 20,
         //   type: BottomNavigationBarType.fixed,
@@ -297,15 +166,5 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  BoxDecoration selectedTopBorder() {
-    return const BoxDecoration(
-        border: Border(top: BorderSide(width: 2.0,color: Color(0xFF0D47A1)))
-    );
-  }
 }
 
-// willpopscope -- ask user to again press back to exit from app
-// use instances or direct call ?? (in screens)
-
-// Take a fresh user and test all screens.
-// icons size is hard coded , look for diff screen sizes

@@ -51,7 +51,6 @@ class _IndexWiseSubmissionsState extends State<IndexWiseSubmissions> {
           final color = widget.containerColor == Colors.white
               ? charts.MaterialPalette.black
               : charts.MaterialPalette.white;
-
           return new charts.TextStyleSpec(color: color);
         },
       )
